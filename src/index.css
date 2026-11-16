@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Layout: role switch on top; chief app in a phone frame beside a short guide, office app as Merlin web.
+   Single light theme on purpose: it mirrors the production Merlin apps. */
+:root {
+  color-scheme: light;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
+  --primary: 282 40% 31%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 280 33% 96%;
+  --secondary-foreground: 282 40% 31%;
+  --muted: 280 14% 96%;
+  --muted-foreground: 280 4% 38%;
+  --accent: 280 33% 96%;
+  --accent-foreground: 282 40% 31%;
+  --destructive: 355 92% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 280 10% 90%;
+  --input: 280 10% 90%;
+  --ring: 282 40% 37%;
+  --radius: 0.625rem;
+  --page: #f4f2f6;
+  --ink: #171717;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+a:focus-visible {
+  outline: 2px solid #6e3785;
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6d1da;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0.4;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-in {
+  animation: fadeIn 0.18s ease-out;
+}
+
+@keyframes sheetUp {
+  from {
+    transform: translateY(24px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.animate-sheet {
+  animation: sheetUp 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes pulseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(93, 47, 112, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(93, 47, 112, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(93, 47, 112, 0);
+  }
+}
+.mic-live {
+  animation: pulseRing 1.6s ease-out infinite;
+}
+
+@keyframes bar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq span {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  margin: 0 1px;
+  border-radius: 2px;
+  background: currentColor;
+  transform-origin: bottom;
+  animation: bar 0.9s ease-in-out infinite;
+}
+.eq span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.eq span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.eq span:nth-child(4) {
+  animation-delay: 0.45s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-sheet,
+  .mic-live,
+  .eq span {
+    animation: none !important;
+  }
+}
